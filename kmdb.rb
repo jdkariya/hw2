@@ -266,7 +266,7 @@ movies = Movie.all
 
 for movie in movies
     studio = Studio.find_by({"id" => movie["studio_id"]})
-    puts "#{movie["title"].ljust(25)} #{movie["year_released"]} #{movie["MPAA_rating"]} #{studio["studio_name"]}"
+    puts "#{movie["title"].ljust(25)} #{movie["year_released"]}     #{movie["MPAA_rating"]}     #{studio["studio_name"]}"
 
 end
 

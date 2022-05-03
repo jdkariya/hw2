@@ -173,7 +173,7 @@ heath_ledger = Actor.find_by({"name" => "Heath Ledger"})
 aaron_eckhart = Actor.find_by({"name" => "Aaron Eckhart"})
 maggie_gyllenhall = Actor.find_by({"name" => "Maggie Gyllenhaal"})
 tom_hardy = Actor.find_by({"name" => "Tom Hardy"})
-joseph_gordon-levitt = Actor.find_by({"name" => "Joseph Gordon-Levitt"})
+joseph_gordon_levitt = Actor.find_by({"name" => "Joseph Gordon-Levitt"})
 anne_hathaway = Actor.find_by({"name" => "Anne Hathaway"})
 
 batman_begins = Movie.find_by({"title" => "Batman Begins"})
@@ -246,7 +246,7 @@ role["movie_id"] = the_dark_knight_rises["id"]
 role.save
 
 role = Role.new
-role["actor_id"] = joseph_gordon-levitt["id"]
+role["actor_id"] = joseph_gordon_levitt["id"]
 role["movie_id"] = the_dark_knight_rises["id"]
 role.save
 
@@ -262,6 +262,14 @@ puts "======"
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 
+movies = Movie.all
+
+for movie in movies
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+    puts "#{movie["title"].ljust(25)} #{movie["year_released"]} #{movie["MPAA_rating"]} #{studio["studio_name"]}"
+
+end
+
 # Prints a header for the cast output
 puts ""
 puts "Top Cast"
@@ -270,3 +278,11 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+roles = Role.all
+
+for role in roles
+    movie = Movie.find_by({"id" => role["movie_id"]})
+    actor = Actor.find_by({"id" => role["actor_id"]})
+    puts "#{movie["title"].ljust(25)} #{actor["name"].ljust(25)} #{actor["character_name"]}"
+end
